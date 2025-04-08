@@ -1,7 +1,7 @@
 from django.core.management.base import BaseCommand
 from octofit_tracker.models import User, Team, Activity, Leaderboard, Workout
-from datetime import timedelta
 from bson import ObjectId
+from datetime import timedelta
 
 class Command(BaseCommand):
     help = 'Populate the database with test data for users, teams, activities, leaderboard, and workouts'
@@ -25,12 +25,12 @@ class Command(BaseCommand):
         User.objects.bulk_create(users)
 
         # Create teams
-        blue_team = Team(_id=ObjectId(), name='Blue Team')
-        gold_team = Team(_id=ObjectId(), name='Gold Team')
-        blue_team.save()
-        gold_team.save()
-        blue_team.members.add(users[0], users[1])
-        gold_team.members.add(users[2], users[3], users[4])
+        team1 = Team(_id=ObjectId(), name='Blue Team')
+        team2 = Team(_id=ObjectId(), name='Gold Team')
+        team1.save()
+        team2.save()
+        team1.members.add(users[0], users[1])
+        team2.members.add(users[2], users[3], users[4])
 
         # Create activities
         activities = [
